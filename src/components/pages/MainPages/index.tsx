@@ -1,17 +1,12 @@
-import React from "react";
-import { Outlet } from "react-router-dom";
-import styles from './MainPages.module.scss';
+import PageWrapper from 'components/common/PageWrapper';
+import React from 'react';
 
-const PageWrapper = () => {
-    return (
-        <div className={styles.page}>
-            <header>111</header>
-            <main className={styles.page_main}>
-                <Outlet />
-            </main>
-            <footer>333</footer>
-        </div>
-    )
-}
+const MainPages = () => {
+  return (
+    <PageWrapper>
+      <div>HELLO WORLD!</div>
+    </PageWrapper>
+  );
+};
 
-export default PageWrapper;
+export default MainPages;

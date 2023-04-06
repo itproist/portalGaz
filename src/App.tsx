@@ -1,17 +1,24 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import PageWrapper from './components/pages/MainPages';
-import AuthContainer from './containers/AuthContainer';
+import AuthContainer from 'containers/AuthContainer';
+import PageWrapper from 'components/common/PageWrapper';
+import { CheckAuth } from 'HOC';
+import MainContainer from 'containers/MainContainer';
 
 function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<PageWrapper />}>
-          <Route index element={<h1>Основная часть</h1>}/>
-          <Route path="auth" element={<AuthContainer />} />
-          <Route path="*" element={<h1>Страница не найдена!</h1>}/>
-        </Route>
+        <Route
+          index
+          element={
+            <CheckAuth>
+              <MainContainer />
+            </CheckAuth>
+          }
+        />
+        <Route path="/auth" element={<AuthContainer />} />
+        <Route path="/*" element={<h1>NOT FOUNT 404</h1>} />
       </Routes>
     </>
   );

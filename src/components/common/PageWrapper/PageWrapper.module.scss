@@ -1,0 +1,14 @@
+.page {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-areas: 
+        'header header header header' 
+        'aside content content content'
+        'aside content content content' 
+        'footer footer footer footer';
+    grid-template-rows: 100px auto auto 100px;
+    height: 100vh;
+    min-width: 100vh;
+}
+
+

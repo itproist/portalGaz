@@ -1,5 +1,21 @@
 .header {
-    grid-area: header;
-    background-color:aqua;
+  grid-area: header;
+  background-color: #215695;
+  background-image: url('../../../assets/gaz.png');
+  background-repeat: no-repeat;
+  background-size: 75px;
+  background-position-x: 12px;
+  background-position-y: 3px;
+  position: relative;
 }
 
+.button {
+  position: absolute;
+  right: 100px;
+  top: 5px;
+}
+
+.popup_heh {
+  position: absolute;
+  right: 20px;
+}

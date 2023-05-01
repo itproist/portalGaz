@@ -1,21 +1,17 @@
 import React from 'react';
-import styles from './PageWrapper.module.scss';
-import Footer from '../Footer';
 import Header from '../Header';
+import styles from './PageWrapper.module.scss';
+import { Outlet } from 'react-router-dom';
 import Sider from '../Sider';
-import Content from '../Content';
 
-type PageWrapperPropsType = {
-  children: React.ReactNode;
-};
-
-const PageWrapper = ({ children }: PageWrapperPropsType) => {
+const PageWrapper = () => {
   return (
     <div className={styles.page}>
       <Header />
-      <Sider />
-      <Content>{children}</Content>
-      <Footer />
+
+      <main className={styles.main}>
+        <Outlet />
+      </main>
     </div>
   );
 };

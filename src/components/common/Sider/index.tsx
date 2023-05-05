@@ -1,29 +1,30 @@
 import React from 'react';
 import styles from './Sider.module.scss';
+import { Link } from 'react-router-dom';
 
 const Sider = () => {
   const [activeKey, setActiveKey] = React.useState(0);
 
   const categories = [
-    'Поздразделение',
-    'Сотрудники',
-    'График работы',
-    'Инструктажи',
-    'Календарь',
-    'Повышение квалификации',
-    'Документы',
+    { id: 1, title: 'Поздразделение', to: '/subdivisions' },
+
+    { id: 2, title: 'График работы', to: '/schedule' },
+    { id: 3, title: 'Инструктажи', to: '/briefings' },
+    { id: 4, title: 'Календарь', to: '/calendar' },
+    { id: 5, title: 'Повышение квалификации', to: '/training' },
+    { id: 6, title: 'Документы', to: '/documentation' },
   ];
 
   return (
     <nav className={styles.aside}>
       <ul>
-        {categories.map((value, i) => (
+        {categories.map((posts) => (
           <li
-            key={i}
-            onClick={() => setActiveKey(i)}
-            className={activeKey === i ? styles.active : ''}
+            key={posts.id}
+            onClick={() => setActiveKey(posts.id)}
+            className={activeKey === posts.id ? styles.active : ''}
           >
-            {value}
+            <Link to={posts.to}>{posts.title}</Link>
           </li>
         ))}
       </ul>

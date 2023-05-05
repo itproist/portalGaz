@@ -2,7 +2,10 @@
   width: 400px;
   padding: 50px;
   border: 1px solid #dedede;
-  margin: 100px auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 150px;
 }
 
 .field {
@@ -42,4 +45,14 @@
   background-color: #fff;
   outline: none;
   border: none;
+}
+
+.auth_auth {
+  height: 50px;
+  background-color: #215695;
+}
+
+.auth_img {
+  width: 90px;
+  padding-left: 10px;
 }

@@ -7,6 +7,8 @@ import { fetchAuth, selectIsAuth } from 'store/slice/users';
 import { Navigate } from 'react-router-dom';
 import lockeyes from '../../../assets/lockeyes.png';
 import blockeyes from '../../../assets/blockeyes.png';
+import Header from '../../../components/common/Header';
+import logo from '../../../assets/gaz.png';
 
 const AuthPages = () => {
   const [type, setType] = React.useState(`password`);
@@ -36,10 +38,6 @@ const AuthPages = () => {
   const onSubmit = async (value) => {
     const data = await dispatch(fetchAuth(value));
 
-    // if (!data.payload) {
-    //   return alert('Не удалось авторизоваться!');
-    // }
-
     if ('token' in data.payload) {
       window.localStorage.setItem('token', data.payload.token);
     }
@@ -50,55 +48,49 @@ const AuthPages = () => {
   }
 
   return (
-    <Paper classes={{ root: styles.root }}>
-      <Typography classes={{ root: styles.title }} variant="h5">
-        Вход в аккаунт
-      </Typography>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <TextField
-          className={styles.field}
-          label="E-Mail"
-          type="email"
-          error={Boolean(errors.email?.message)}
-          helperText={errors.email?.message}
-          {...register('email', { required: 'Укажите почту' })}
-          fullWidth
-        />
+    <div className={styles.auth}>
+      <div className={styles.auth_auth}>
+        <img className={styles.auth_img} src={logo} alt="" />
+      </div>
+      <Paper classes={{ root: styles.root }}>
+        <Typography classes={{ root: styles.title }} variant="h5">
+          Вход в аккаунт
+        </Typography>
 
-        <div className={styles.passwordrl}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <TextField
             className={styles.field}
-            label="Пароль"
-            type={type}
-            error={Boolean(errors.password?.message)}
-            helperText={errors.password?.message}
-            {...register('password', { required: 'Укажите пароль' })}
+            label="E-Mail"
+            type="email"
+            error={Boolean(errors.email?.message)}
+            helperText={errors.email?.message}
+            {...register('email', { required: 'Укажите почту' })}
             fullWidth
           />
-          <div className={styles.passwordab}>
-            <button type="button" className={styles.password} onClick={showPassword}>
-              {type === 'text' ? <img src={lockeyes} alt="" /> : <img src={blockeyes} alt="" />}
-            </button>
+
+          <div className={styles.passwordrl}>
+            <TextField
+              className={styles.field}
+              label="Пароль"
+              type={type}
+              error={Boolean(errors.password?.message)}
+              helperText={errors.password?.message}
+              {...register('password', { required: 'Укажите пароль' })}
+              fullWidth
+            />
+            <div className={styles.passwordab}>
+              <button type="button" className={styles.password} onClick={showPassword}>
+                {type === 'text' ? <img src={lockeyes} alt="" /> : <img src={blockeyes} alt="" />}
+              </button>
+            </div>
           </div>
-        </div>
 
-        {/* <Button
-          classes={{ root: styles.button }}
-          className={styles.button}
-          disabled={!isValid}
-          type="submit"
-          size="large"
-          variant="contained"
-          fullWidth
-        >
-          Войти
-        </Button> */}
-
-        <button type="submit" className={styles.button} disabled={!isValid}>
-          Войти
-        </button>
-      </form>
-    </Paper>
+          <button type="submit" className={styles.button} disabled={!isValid}>
+            Войти
+          </button>
+        </form>
+      </Paper>
+    </div>
   );
 };
 

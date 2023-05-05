@@ -9,7 +9,9 @@ import useOutsideAlerter from 'hook';
 const Popup = () => {
   const { ref, isShow, setIsShow } = useOutsideAlerter(false);
 
-  const { firstName, lastName, avatarUrl, surname } = useSelector((state: any) => state.auth.data);
+  const { _id, firstName, lastName, avatarUrl, surname } = useSelector(
+    (state: any) => state.auth.data,
+  );
 
   const dispatch = useDispatch();
 
@@ -53,7 +55,7 @@ const Popup = () => {
                   />
                 </svg>
                 <span className={styles.popup_mr}>
-                  <Link to="/profile">Настройки</Link>
+                  <Link to={`/auth/me/${_id}`}>Настройки</Link>
                 </span>
               </div>
 

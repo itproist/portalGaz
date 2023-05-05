@@ -9,6 +9,14 @@ import { fetchAuthMe, selectIsAuth } from 'store/slice/users';
 import { Registration } from 'components/pages/RegisterPages';
 import { AddPost } from 'components/pages/AddPages';
 import ProfileContainer from 'containers/ProfileContainer';
+import Header from 'components/common/Header';
+import SubdivisionContainer from 'containers/SubdivisionsContainer';
+import EmployeesContainer from 'containers/EmployeesContainer';
+import ScheduleContainer from 'containers/ScheduleContainer';
+import BriefingsContainer from 'containers/BriefingsContainer';
+import CalendarContainer from 'containers/CalendarContainer';
+import TrainingContainer from 'containers/TrainingContainer';
+import DocumentationContainer from 'containers/DocumentationContainer';
 
 function App() {
   const dispatch = useDispatch();
@@ -19,19 +27,26 @@ function App() {
   }, []);
 
   return (
-    <>
+    <div>
       <Routes>
+        <Route path="/registraion" element={<Registration />} />
+        <Route path="/login" element={<AuthContainer />} />
         <Route path="/" element={<PageWrapper />}>
           <Route index element={<MainContainer />} />
-          <Route path="login" element={<AuthContainer />} />
           <Route path="posts/:id" element={<FullPost />} />
           <Route path="posts/:id/edit" element={<AddPost />} />
-          <Route path="registraion" element={<Registration />} />
           <Route path="add-post" element={<AddPost />} />
-          <Route path="profile" element={<ProfileContainer />} />
+          <Route path="auth/me/:id" element={<ProfileContainer />} />
+          <Route path="subdivisions" element={<SubdivisionContainer />} />
+          <Route path="employees" element={<EmployeesContainer />} />
+          <Route path="schedule" element={<ScheduleContainer />} />
+          <Route path="briefings" element={<BriefingsContainer />} />
+          <Route path="calendar" element={<CalendarContainer />} />
+          <Route path="training" element={<TrainingContainer />} />
+          <Route path="documentation" element={<DocumentationContainer />} />
         </Route>
       </Routes>
-    </>
+    </div>
   );
 }
 

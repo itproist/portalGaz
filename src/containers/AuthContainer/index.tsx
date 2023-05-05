@@ -1,7 +1,11 @@
 import AuthPages from '../../components/pages/AuthPages';
 
 const AuthContainer = () => {
-  return <AuthPages />;
+  return (
+    <>
+      <AuthPages />
+    </>
+  );
 };
 
 export default AuthContainer;

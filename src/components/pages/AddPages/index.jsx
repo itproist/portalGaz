@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useRef } from 'react';
 import TextField from '@mui/material/TextField';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
-import SimpleMDE, { SimpleMDEReactProps } from 'react-simplemde-editor';
+import SimpleMDE from 'react-simplemde-editor';
 import 'easymde/dist/easymde.min.css';
 import styles from './AddPages.module.scss';
 import { useSelector } from 'react-redux';
@@ -19,6 +19,7 @@ export const AddPost = () => {
   const [title, setTitle] = React.useState('');
   const [tags, setTags] = React.useState('');
   const [imageUrl, setImageUrl] = React.useState('');
+  const [pdfUrl, setPdfUrl] = React.useState('');
   const inputFileRef = useRef(null);
 
   const isEditing = Boolean(id);
@@ -87,7 +88,7 @@ export const AddPost = () => {
     return {
       autofocus: true,
       spellChecker: false,
-      maxHeight: '400px',
+      maxHeight: '200px',
       placeholder: 'Введите текст...',
       status: false,
       autosave: {
@@ -98,47 +99,66 @@ export const AddPost = () => {
   }, []);
 
   return (
-    <Paper style={{ padding: 30 }}>
-      <Button onClick={() => inputFileRef.current.click()} variant="outlined" size="large">
-        Загрузить превью
-      </Button>
-      <input ref={inputFileRef} type="file" onChange={handleChangeFile} hidden />
-      {imageUrl && (
-        <>
-          <Button variant="contained" color="error" onClick={onClickRemoveImage}>
-            Удалить
-          </Button>
-          <img className={styles.image} src={`http://localhost:5000${imageUrl}`} alt="Uploaded" />
-        </>
-      )}
-
-      <br />
-      <br />
-      <TextField
-        classes={{ root: styles.title }}
-        variant="standard"
-        placeholder="Заголовок статьи..."
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        fullWidth
-      />
-      <TextField
-        classes={{ root: styles.tags }}
-        variant="standard"
-        placeholder="Тэги"
-        value={tags}
-        onChange={(e) => setTags(e.target.value)}
-        fullWidth
-      />
-      <SimpleMDE className={styles.editor} value={text} onChange={onChange} options={options} />
-      <div className={styles.buttons}>
-        <Button onClick={onSubmit} size="large" variant="contained">
-          {isEditing ? 'Сохранить' : 'Опубликовать'}
+    <div className={styles.writeNews}>
+      <Paper>
+        <Button
+          className={styles.download}
+          onClick={() => inputFileRef.current.click()}
+          variant="outlined"
+          size="large"
+        >
+          Загрузить превью
         </Button>
-        <Link to="/">
-          <Button size="large">Отмена</Button>
-        </Link>
-      </div>
-    </Paper>
+        <input ref={inputFileRef} type="file" onChange={handleChangeFile} accept=".pdf" hidden />
+        {imageUrl && (
+          <>
+            <Button
+              className={styles.writeNewsButtonDelete}
+              variant="contained"
+              color="error"
+              onClick={onClickRemoveImage}
+            >
+              Удалить
+            </Button>
+            <img
+              className={styles.writeNewsImg}
+              src={`http://localhost:5000${imageUrl}`}
+              alt="Uploaded"
+            />
+          </>
+        )}
+
+        <br />
+        <br />
+        <TextField
+          className={styles.writeNews_text}
+          variant="standard"
+          placeholder="Заголовок статьи..."
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
+        <TextField
+          className={styles.writeNews_text}
+          variant="standard"
+          placeholder="Тэги"
+          value={tags}
+          onChange={(e) => setTags(e.target.value)}
+        />
+        <SimpleMDE
+          className={styles.writeNews_simple}
+          value={text}
+          onChange={onChange}
+          options={options}
+        />
+        <div className={styles.writeNews_button}>
+          <Button onClick={onSubmit} size="large" variant="contained">
+            {isEditing ? 'Сохранить' : 'Опубликовать'}
+          </Button>
+          <Link className={styles.writeNews_otmena} to="/">
+            <Button size="large">Отмена</Button>
+          </Link>
+        </div>
+      </Paper>
+    </div>
   );
 };

@@ -1,11 +1,11 @@
 .header {
   grid-area: header;
   background-color: #215695;
-  background-image: url('../../../assets/gaz.png');
-  background-repeat: no-repeat;
-  background-size: 75px;
-  background-position-x: 12px;
-  background-position-y: 3px;
+  // background-image: url('../../../assets/gaz.png');
+  // background-repeat: no-repeat;
+  // background-size: 75px;
+  // background-position-x: 12px;
+  // background-position-y: 3px;
   position: relative;
 }
 
@@ -18,4 +18,9 @@
 .popup_heh {
   position: absolute;
   right: 20px;
+}
+
+.igegege {
+  width: 95px;
+  padding-left: 10px;
 }

@@ -7,6 +7,7 @@ import List from '../Popup';
 import Popup from '../Popup';
 import { selectIsAuth } from 'store/slice/users';
 import { Button } from '@mui/material';
+// import logo from '../../../assets/gaz.png';
 
 const Header = () => {
   const isAuth = useSelector(selectIsAuth);
@@ -15,6 +16,9 @@ const Header = () => {
     <header className={styles.header}>
       {isAuth ? (
         <>
+          <Link to="/">
+            <img className={styles.igegege} src={logo} alt="" />
+          </Link>
           <div className={styles.button}>
             <Link to="/add-post">
               <Button variant="contained">Написать статью</Button>

@@ -7,12 +7,12 @@ const Sider = () => {
 
   const categories = [
     { id: 1, title: 'Поздразделение', to: '/subdivisions' },
-
-    { id: 2, title: 'График работы', to: '/schedule' },
-    { id: 3, title: 'Инструктажи', to: '/briefings' },
-    { id: 4, title: 'Календарь', to: '/calendar' },
-    { id: 5, title: 'Повышение квалификации', to: '/training' },
-    { id: 6, title: 'Документы', to: '/documentation' },
+    { id: 2, title: 'Cписок сотрудников', to: '/employees' },
+    { id: 3, title: 'График работы', to: '/schedule' },
+    { id: 4, title: 'Инструктажи', to: '/briefings' },
+    { id: 5, title: 'Календарь', to: '/calendar' },
+    { id: 6, title: 'Повышение квалификации', to: '/training' },
+    { id: 7, title: 'Документы', to: '/documentation' },
   ];
 
   return (

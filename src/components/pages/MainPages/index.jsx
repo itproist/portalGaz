@@ -14,7 +14,7 @@ const MainPages = () => {
   const { posts } = useSelector((state) => state.posts);
   const userData = useSelector((state) => state.auth.data);
   const [searchParams, setSearchParams] = useSearchParams();
-  const [data, setData] = useState();
+
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
 
@@ -26,11 +26,8 @@ const MainPages = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     const form = e.target;
-
     const query = form.search.value;
-
     setSearchParams({ post: query });
   };
 

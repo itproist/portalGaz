@@ -1,7 +1,7 @@
 /* eslint-disable react/no-children-prop */
 import React, { useEffect, useState } from 'react';
 import { Post } from '../Post';
-import axios from '../../../api/index.js';
+import axios from '../../../api/index';
 import { useNavigate, useParams } from 'react-router-dom';
 import ReactMarkdown from 'https://esm.sh/react-markdown@7?bundle';
 // import ReactMarkdown from 'https://esm.sh/react-markdown@7';
@@ -42,7 +42,7 @@ export const FullPost = () => {
       <Post
         id={data._id}
         title={data.title}
-        imageUrl={`http://localhost:5000${data.imageUrl}`}
+        imageUrl={`http://localhost:5000/${data.imageUrl}`}
         createdAt={data.createdAt}
         viewsCount={data.viewsCount}
         tags={data.tags}

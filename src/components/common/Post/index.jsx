@@ -3,10 +3,10 @@ import styles from './Post.module.scss';
 import { UserInfo } from '../UserInfo';
 import { PostSkeleton } from './Skeleton';
 import { Link } from 'react-router-dom';
-import clsx from 'clsx';
 import lockeyes from '../../../assets/lockeyes.png';
 import { useDispatch } from 'react-redux';
 import { fetchRemovePost } from 'store/slice/posts';
+import clsx from 'clsx';
 
 export const Post = ({
   id,
@@ -20,6 +20,7 @@ export const Post = ({
   isFullPost,
   isLoading,
   isEditable,
+  items,
 }) => {
   if (isLoading) {
     return <PostSkeleton />;
@@ -70,7 +71,7 @@ export const Post = ({
       </div>
 
       <div className={styles.wrapper}>
-        <UserInfo {...user} additionalText={createdAt} />
+        <UserInfo {...user} className={styles.infoinfo} additionalText={createdAt} />
         <ul className={styles.tags}>
           {tags.map((name) => (
             <li key={name}>

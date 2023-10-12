@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import TextField from '@mui/material/TextField';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
@@ -14,20 +14,19 @@ export const AddPost = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const isAuth = useSelector(selectIsAuth);
-  const [isLoading, setLoading] = React.useState(false);
-  const [text, setText] = React.useState('');
-  const [title, setTitle] = React.useState('');
-  const [tags, setTags] = React.useState('');
-  const [imageUrl, setImageUrl] = React.useState('');
-  const [pdfUrl, setPdfUrl] = React.useState('');
+  const [isLoading, setLoading] = useState(false);
+  const [text, setText] = useState('');
+  const [title, setTitle] = useState('');
+  const [tags, setTags] = useState('');
+  const [imageUrl, setImageUrl] = useState('');
+  const [pdfUrl, setPdfUrl] = useState('');
   const inputFileRef = useRef(null);
 
   const isEditing = Boolean(id);
 
-  const handleChangeFile = async (event) => {
+  const handleChangeFile = async () => {
     try {
       const formData = new FormData();
-
       const file = event.target.files[0];
       formData.append('image', file);
 
@@ -44,7 +43,7 @@ export const AddPost = () => {
     setImageUrl('');
   };
 
-  const onChange = React.useCallback((value) => {
+  const onChange = React.useCallback(() => {
     setText(value);
   }, []);
 

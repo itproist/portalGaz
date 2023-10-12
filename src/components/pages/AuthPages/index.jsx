@@ -7,7 +7,6 @@ import { fetchAuth, selectIsAuth } from 'store/slice/users';
 import { Navigate } from 'react-router-dom';
 import lockeyes from '../../../assets/lockeyes.png';
 import blockeyes from '../../../assets/blockeyes.png';
-import Header from '../../../components/common/Header';
 import logo from '../../../assets/gaz.png';
 
 const AuthPages = () => {

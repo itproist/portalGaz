@@ -1,13 +1,12 @@
 import React from 'react';
 import styles from './Header.module.scss';
 import logo from '../../../assets/gaz.png';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link, Navigate } from 'react-router-dom';
-import List from '../Popup';
 import Popup from '../Popup';
 import { selectIsAuth } from 'store/slice/users';
 import { Button } from '@mui/material';
-// import logo from '../../../assets/gaz.png';
+import messanger from '../../../assets/messenger.png';
 
 const Header = () => {
   const isAuth = useSelector(selectIsAuth);

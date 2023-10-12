@@ -1,12 +1,7 @@
-import { Profile } from 'components/common/Profile';
-import ProfileUser from 'components/pages/ProfilePagesМОЖНОНЕСМОТРЕТЬ';
+import ProfilePages from 'components/pages/ProfilePages';
 
 const ProfileContainer = () => {
-  return <Profile />;
+  return <ProfilePages />;
 };
-
-// const ProfileContainer = () => {
-//   return <ProfileUser />;
-// };
 
 export default ProfileContainer;

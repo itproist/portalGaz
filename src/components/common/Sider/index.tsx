@@ -1,35 +1,39 @@
 import React from 'react';
 import styles from './Sider.module.scss';
-import { Link } from 'react-router-dom';
+import { FaTh, FaBars, FaUserAlt } from 'react-icons/fa';
+import { NavLink } from 'react-router-dom';
 
 const Sider = () => {
-  const [activeKey, setActiveKey] = React.useState(0);
-
+  const [isOpen, setIsOpen] = React.useState(false);
+  const toggle = () => setIsOpen(!isOpen);
   const categories = [
-    { id: 1, title: 'Поздразделение', to: '/subdivisions' },
-    { id: 2, title: 'Cписок сотрудников', to: '/employees' },
-    { id: 3, title: 'График работы', to: '/schedule' },
-    { id: 4, title: 'Инструктажи', to: '/briefings' },
-    { id: 5, title: 'Календарь', to: '/calendar' },
-    { id: 6, title: 'Повышение квалификации', to: '/training' },
-    { id: 7, title: 'Документы', to: '/documentation' },
+    {
+      path: '/test1',
+      name: 'Поздразделение',
+      icon: <FaTh />,
+    },
+    {
+      path: 'members',
+      name: 'Cписок сотрудников',
+      icon: <FaUserAlt />,
+    },
   ];
 
   return (
-    <nav className={styles.aside}>
+    <div style={{ width: isOpen ? '250px' : '50px' }} className={styles.aside}>
       <ul>
-        {categories.map((posts) => (
-          <li
-            key={posts.id}
-            onClick={() => setActiveKey(posts.id)}
-            className={activeKey === posts.id ? styles.active : ''}
-          >
-            <Link to={posts.to}>{posts.title}</Link>
-          </li>
+        {categories.map((posts, index) => (
+          <NavLink key={index} className={styles.link} to={posts.path}>
+            <div className={styles.icon}>{posts.icon}</div>
+            <div style={{ display: isOpen ? 'block' : 'none' }}> {posts.name}</div>
+          </NavLink>
         ))}
       </ul>
-    </nav>
+      <div className={styles.toggle}>
+        <FaBars onClick={toggle} />
+        <div style={{ display: isOpen ? 'block' : 'none' }}>Свернуть</div>
+      </div>
+    </div>
   );
 };
-
 export default Sider;

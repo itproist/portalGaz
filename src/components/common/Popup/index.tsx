@@ -9,9 +9,7 @@ import useOutsideAlerter from 'hook';
 const Popup = () => {
   const { ref, isShow, setIsShow } = useOutsideAlerter(false);
 
-  const { _id, firstName, lastName, avatarUrl, surname } = useSelector(
-    (state: any) => state.auth.data,
-  );
+  const { _id, fullName, avatarUrl, surname } = useSelector((state: any) => state.auth.data);
 
   const dispatch = useDispatch();
 
@@ -35,11 +33,7 @@ const Popup = () => {
         {isShow && (
           <div className={styles.popup_open}>
             <nav>
-              <div className={styles.popup_fullName}>
-                {lastName}
-                <span className={styles.nameeeee}>{firstName}</span>
-                {surname}
-              </div>
+              <div className={styles.popup_fullName}>{fullName}</div>
 
               <div className={styles.popup_settings}>
                 <svg

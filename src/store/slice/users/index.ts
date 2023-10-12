@@ -1,5 +1,12 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import axios from '../../../api/index';
+
+interface AuthState {
+  data: any;
+  status: 'loading' | 'loaded' | 'error';
+}
+
+const initialState: AuthState = { data: null, status: 'loading' };
 
 export const fetchAuth = createAsyncThunk('auth/fetchUserData', async (params) => {
   const { data } = await axios.post('/auth/login', params);
@@ -21,74 +28,65 @@ export const fetchUser = createAsyncThunk('users/fetchUser', async () => {
   return data;
 });
 
-const initialState = {
-  data: null,
-  status: 'loading',
-};
-
-export const authSlice = createSlice({
+const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {
-    clearUserData() {
-      return { ...initialState };
-    },
-  },
-  extraReducers: {
-    [fetchAuth.pending.toString()]: (state) => {
-      state.status = 'loading';
-      state.data = null;
-    },
-    [fetchAuth.fulfilled.toString()]: (state, action) => {
-      state.status = 'loaded';
-      state.data = action.payload;
-    },
-    [fetchAuth.rejected.toString()]: (state) => {
-      state.status = 'error';
-      state.data = null;
-    },
-    [fetchAuthMe.pending.toString()]: (state) => {
-      state.status = 'loading';
-      state.data = null;
-    },
-    [fetchAuthMe.fulfilled.toString()]: (state, action) => {
-      state.status = 'loaded';
-      state.data = action.payload;
-    },
-    [fetchAuthMe.rejected.toString()]: (state) => {
-      state.status = 'error';
-      state.data = null;
-    },
-    [fetchRegister.pending.toString()]: (state) => {
-      state.status = 'loading';
-      state.data = null;
-    },
-    [fetchRegister.fulfilled.toString()]: (state, action) => {
-      state.status = 'loaded';
-      state.data = action.payload;
-    },
-    [fetchRegister.rejected.toString()]: (state) => {
-      state.status = 'error';
-      state.data = null;
-    },
-
-    [fetchUser.pending.toString()]: (state) => {
-      state.data = null;
-      state.status = 'loading';
-    },
-    [fetchUser.fulfilled.toString()]: (state, action) => {
-      state.data = action.payload;
-      state.status = 'loaded';
-    },
-    [fetchUser.rejected.toString()]: (state) => {
-      state.data = null;
-      state.status = 'error';
-    },
+  reducers: { clearUserData: () => initialState },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchAuth.pending, (state) => {
+        state.status = 'loading';
+        state.data = null;
+      })
+      .addCase(fetchAuth.fulfilled, (state, action: PayloadAction<any>) => {
+        state.status = 'loaded';
+        state.data = action.payload;
+      })
+      .addCase(fetchAuth.rejected, (state) => {
+        state.status = 'error';
+        state.data = null;
+      })
+      .addCase(fetchAuthMe.pending, (state) => {
+        state.status = 'loading';
+        state.data = null;
+      })
+      .addCase(fetchAuthMe.fulfilled, (state, action: PayloadAction<any>) => {
+        state.status = 'loaded';
+        state.data = action.payload;
+      })
+      .addCase(fetchAuthMe.rejected, (state) => {
+        state.status = 'error';
+        state.data = null;
+      })
+      .addCase(fetchRegister.pending, (state) => {
+        state.status = 'loading';
+        state.data = null;
+      })
+      .addCase(fetchRegister.fulfilled, (state, action: PayloadAction<any>) => {
+        state.status = 'loaded';
+        state.data = action.payload;
+      })
+      .addCase(fetchRegister.rejected, (state) => {
+        state.status = 'error';
+        state.data = null;
+      })
+      .addCase(fetchUser.pending, (state) => {
+        state.status = 'loading';
+        state.data = null;
+      })
+      .addCase(fetchUser.fulfilled, (state, action: PayloadAction<any>) => {
+        state.status = 'loaded';
+        state.data = action.payload;
+      })
+      .addCase(fetchUser.rejected, (state) => {
+        state.status = 'error';
+        state.data = null;
+      });
   },
 });
 
 export const { clearUserData } = authSlice.actions;
 
-export const selectIsAuth = (state: any) => Boolean(state.auth.data);
+export const selectIsAuth = (state: any): boolean => Boolean(state.auth.data);
 
 export const authReducer = authSlice.reducer;

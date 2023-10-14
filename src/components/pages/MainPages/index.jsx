@@ -52,7 +52,7 @@ const MainPages = () => {
 
         <div className={styles.posts}>
           {(isPostsLoading ? [...Array(5)] : posts.items)
-            .filter((posts) => posts.title.includes(postQuery))
+            .filter((posts) => posts?.title?.includes(postQuery))
             .map((obj, index) =>
               isPostsLoading ? (
                 <Post key={index} isLoading={true} />
